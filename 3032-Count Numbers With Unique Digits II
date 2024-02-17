@@ -1,0 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class UniqueDigitsCounter {
+
+    public static void main(String[] args) {
+        int a = 1, b = 20;
+        System.out.println("Count of numbers with unique digits: " + countNumbersWithUniqueDigits(a, b));
+    }
+
+    public static int countNumbersWithUniqueDigits(int a, int b) {
+        int count = 0;
+        for (int i = a; i <= b; i++) {
+            if (hasUniqueDigits(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static boolean hasUniqueDigits(int number) {
+        Set<Character> digits = new HashSet<>();
+        for (char digit : String.valueOf(number).toCharArray()) {
+            if (!digits.add(digit)) {
+                // If the digit is already in the set, digits are not unique
+                return false;
+            }
+        }
+        return true; // All digits were unique
+    }
+}
